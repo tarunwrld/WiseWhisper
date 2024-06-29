@@ -4,7 +4,7 @@ from langchain_huggingface import HuggingFaceEndpoint
 from langchain_huggingface import ChatHuggingFace
 from googletrans import Translator
 import time
-import pyttsx3
+# import pyttsx3
 import random
 
 st.set_page_config(
@@ -163,12 +163,12 @@ def main():
             translated_text = translator.translate(c, dest=choice)
             return translated_text.text
         
-        def talk(g):
-            engine = pyttsx3.init()
-            newVoiceRate = 145
-            engine.setProperty('rate',newVoiceRate)
-            engine.say(g)
-            engine.runAndWait()
+        # def talk(g):
+        #     engine = pyttsx3.init()
+        #     newVoiceRate = 145
+        #     engine.setProperty('rate',newVoiceRate)
+        #     engine.say(g)
+        #     engine.runAndWait()
 
         def model(question):
             llm = HuggingFaceEndpoint(
@@ -213,18 +213,18 @@ def main():
                     messages.chat_message("user").write("You: " + question)
                     text1 = greet()
                     messages.chat_message("assistant").write(text1)
-                    talk(text1)
+                    # talk(text1)
 
                 elif len(question.split()) < 5:
                     text1 = error()
                     messages.chat_message("assistant").write(text1)
-                    talk(text1)
+                    # talk(text1)
 
                 else:
                     messages.chat_message("user").write("You: " + question)
                     text1 = model(question)
                     messages.chat_message("assistant").write(text1)
-                    talk(text1)
+                    # talk(text1)
 
         # Right column (Select Language and Translation)
         with right_column:
@@ -241,7 +241,6 @@ def main():
             if question:
                 translated_text = translator(str(text1), option)
                 messages1.chat_message("assistant").write(translated_text)
-                # st.write(translated_text)
 
         
 if __name__ == "__main__":
