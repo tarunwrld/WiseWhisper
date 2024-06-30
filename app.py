@@ -3,7 +3,7 @@ import streamlit as st
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain_huggingface import ChatHuggingFace
 # from googletrans import Translator
-from deep_translator import GoogleTranslator
+from translate import Translator
 import time
 # import pyttsx3
 import random
@@ -162,7 +162,8 @@ def main():
             if option in language_map:
                 choice = language_map[option]
             # translated_text = translator.translate(c, dest=choice)
-            translate_text = GoogleTranslator(source='auto', target=choice).translate(text=c)
+            translator= Translator(to_lang=choice)
+            translate_text = translator.translate(c)
             return translated_text
         
         # def talk(g):
