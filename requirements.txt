@@ -6,4 +6,4 @@ langchain
 huggingface
 streamlit-on-Hover-tabs
 huggingface-hub
-deep-translator
+translate
