@@ -163,7 +163,7 @@ def main():
             if option in language_map:
                 choice = language_map[option]
             # translated_text = translator.translate(c, dest=choice)
-            translate_text = translator.translate('สวัสดีจีน',lang_tgt='en') 
+            translate_text = translator.translate(c,lang_tgt=choice) 
             return translated_text.text
         
         # def talk(g):
