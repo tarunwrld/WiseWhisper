@@ -3,6 +3,7 @@ import streamlit as st
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain_huggingface import ChatHuggingFace
 from googletrans import Translator
+from google_trans_new import google_translator
 import time
 # import pyttsx3
 import random
@@ -150,7 +151,8 @@ def main():
             return random.choice(messages)
 
         def translator(c,option):
-            translator = Translator()
+            # translator = Translator()
+            translator = google_translator() 
             language_map = {
                 "Hindi": 'hi',
                 "Punjabi": 'pa',
