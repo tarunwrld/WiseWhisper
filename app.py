@@ -162,7 +162,7 @@ def main():
             if option in language_map:
                 choice = language_map[option]
             # translated_text = translator.translate(c, dest=choice)
-            translate_text = GoogleTranslator(source='auto', target=choice).translate(c) 
+            translate_text = GoogleTranslator(source='auto', target=choice).translate(text=c)
             return translated_text
         
         # def talk(g):
