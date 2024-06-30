@@ -161,7 +161,7 @@ def main():
             if option in language_map:
                 choice = language_map[option]
             translated_text = translator.translate(c, dest=choice)
-            return translated_text
+            return translated_text.text
         
         # def talk(g):
         #     engine = pyttsx3.init()
