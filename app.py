@@ -2,8 +2,7 @@ from st_on_hover_tabs import on_hover_tabs
 import streamlit as st
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain_huggingface import ChatHuggingFace
-# from googletrans import Translator
-from translate import Translator
+from googletrans import Translator
 import time
 # import pyttsx3
 import random
@@ -161,9 +160,7 @@ def main():
             }
             if option in language_map:
                 choice = language_map[option]
-            # translated_text = translator.translate(c, dest=choice)
-            translator= Translator(to_lang=choice)
-            translate_text = translator.translate(c)
+            translated_text = translator.translate(c, dest=choice)
             return translated_text
         
         # def talk(g):
