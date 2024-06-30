@@ -150,7 +150,7 @@ def main():
             return random.choice(messages)
 
         def translator(c,option):
-            # translator = Translator() 
+            # translator = Translator(service_urls=['translate.googleapis.com']) 
             language_map = {
                 "Hindi": 'hi',
                 "Punjabi": 'pa',
