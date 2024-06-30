@@ -6,4 +6,4 @@ langchain
 huggingface
 streamlit-on-Hover-tabs
 huggingface-hub
-google-trans-new==1.1.9
+deep-translator
