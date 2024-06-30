@@ -2,8 +2,5 @@ langchain-huggingface
 streamlit
 text-generation
 pyttsx3
-langchain
-huggingface
 streamlit-on-Hover-tabs
-huggingface-hub
-translate
+googletrans
