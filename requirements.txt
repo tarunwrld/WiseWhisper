@@ -3,4 +3,4 @@ streamlit
 text-generation
 pyttsx3
 streamlit-on-Hover-tabs
-googletrans
+googletrans==3.1.0a0
