@@ -163,7 +163,7 @@ def main():
                 choice = language_map[option]
             # translated_text = translator.translate(c, dest=choice)
             translate_text = GoogleTranslator(source='auto', target=choice).translate(c) 
-            return translated_text.text
+            return translated_text
         
         # def talk(g):
         #     engine = pyttsx3.init()
@@ -241,7 +241,7 @@ def main():
                 )
 
             if question:
-                translated_text = translator(str(text1), option)
+                translated_text = translator(text1, option)
                 messages1.chat_message("assistant").write(translated_text)
 
         
