@@ -101,7 +101,7 @@ def main():
         page_bg_img = '''
             <style>
             [data-testid = "stAppViewContainer"] {
-            background-image: url("https://cdn.dribbble.com/users/32512/screenshots/4888827/circle_story_by_gleb.gif");
+            background-image: url("https://i0.wp.com/picjumbo.com/wp-content/uploads/dark-abstract-background-wallpaper-black-and-orange-free-photo.jpg?w=2210&quality=70");
             background-size: cover;
             }
             
