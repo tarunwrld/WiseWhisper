@@ -1,4 +1,4 @@
-langchain-huggingface
+huggingface-hub
 streamlit
 text-generation
 pyttsx3
