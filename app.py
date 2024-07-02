@@ -1,7 +1,6 @@
 from st_on_hover_tabs import on_hover_tabs
 import streamlit as st
-from langchain_huggingface import HuggingFaceEndpoint
-from langchain_huggingface import ChatHuggingFace
+from huggingface_hub import InferenceClient
 from googletrans import Translator
 import time
 # import pyttsx3
@@ -171,32 +170,31 @@ def main():
         #     engine.runAndWait()
 
         def model(question):
-            llm = HuggingFaceEndpoint(
-            repo_id="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
-            task="text-generation",
-            max_new_tokens=250,
-            do_sample=False,
-            temperature=0.5,
-            repetition_penalty=1.03,
-            huggingfacehub_api_token=huggingfacehub_api_token1,
-            )
-            from langchain_core.messages import (
-                HumanMessage,
-                SystemMessage,
-            )
+            client = InferenceClient()
             messages = [
-                SystemMessage(
-                    content="You are an Indian legal professional, and your answers should be considered as legal advice. You provide personalized legal advice on questions related to Indian fundamental rights. If a question is asked that is not related to Indian legal advice, respond with 'Sorry, I can only provide legal advice related to Indian fundamental rights.' Answers must be short and accurate, strictly related to the topic."
-                ),
-                HumanMessage(
-                    content=question
-                ),
+                {
+                    "role": "user",
+                    "content": question,
+                },
+                {
+                    "role": "assistant",
+                    "content": "Act like You are a legal Indian lawyer. If question asked is not related to the indian law you will not provide any answer You help people following Indian law. You don't know anything except law.",
+                },
             ]
-
-            chat_model = ChatHuggingFace(llm=llm)
-            res = chat_model.invoke(messages)
-            return res.content
-    
+            response = client.chat_completion(
+                messages=messages,
+                tool_choice="auto",
+                temperature=1e-2,
+                max_tokens=50,
+                top_p=0.95,
+                seed=42,
+            )
+            
+            # Extracting the response content
+            assistant_response = response.choices[0].message.content
+            
+            return assistant_response
+            
         def greet():
             for word in greet_text():
                 yield word
