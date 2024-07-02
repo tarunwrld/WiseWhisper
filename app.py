@@ -14,8 +14,6 @@ st.set_page_config(
             'About': "# Under Construction"
         }
     )
-
-huggingfacehub_api_token1 = st.secrets["huggingfacehub_api_token"] 
 def main():
     with st.sidebar:
         # st.sidebar.title("Navigation")
