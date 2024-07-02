@@ -185,7 +185,7 @@ def main():
                 messages=messages,
                 tool_choice="auto",
                 temperature=1e-2,
-                max_tokens=50,
+                max_tokens=350,
                 top_p=0.95,
                 seed=42,
             )
