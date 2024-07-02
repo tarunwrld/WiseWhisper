@@ -98,7 +98,7 @@ def main():
         page_bg_img = '''
             <style>
             [data-testid = "stAppViewContainer"] {
-            background-image: url("https://i0.wp.com/picjumbo.com/wp-content/uploads/dark-abstract-background-wallpaper-black-and-orange-free-photo.jpg?w=2210&quality=70");
+            background-image: url("https://www.1900law.com/wp-content/uploads/mastheadimg-scale-1024x500.jpg");
             background-size: cover;
             }
             
