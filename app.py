@@ -173,10 +173,9 @@ def main():
                   "models/gemini-1.5-flash",
                   system_instruction="You are an Indian Lawyer. You help people with indian law queries you dont answer any other questions that are not related to indian queries",
               )
-              a = input("Enter ")
               
               response = model.generate_content(
-              a,
+              question,
               generation_config=genai.types.GenerationConfig(
                   candidate_count=1,
                   stop_sequences=["x"],
