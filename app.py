@@ -181,15 +181,17 @@ def main():
                     stop_sequences=["x"],
                     max_output_tokens=500,
                     temperature=1.0,
+                    stream=True
                 ),
             )
 
-            if hasattr(response, 'text'):
-                content = response.text
+           if hasattr(response, 'text'):
+            for chunk in response:
+                if hasattr(chunk, 'text'):
+                    return chunk.text
+                return "No valid chunk found"
             else:
-                content = "No content found"  # Fallback message
-            
-            return content
+                return "No content found"
 
             # client = InferenceClient()
             # messages = [
