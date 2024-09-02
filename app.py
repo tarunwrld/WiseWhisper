@@ -176,12 +176,12 @@ def main():
             
             response = model.generate_content(
                 question,
+                stream=True,
                 generation_config=genai.types.GenerationConfig(
                     candidate_count=1,
                     stop_sequences=["x"],
                     max_output_tokens=500,
                     temperature=1.0,
-                    stream=True
                 ),
             )
             if hasattr(response, 'text'):
