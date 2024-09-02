@@ -184,7 +184,7 @@ def main():
                 ),
             )
 
-            return response['text']
+            return response
         
             # client = InferenceClient()
             # messages = [
