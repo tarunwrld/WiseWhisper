@@ -184,17 +184,13 @@ def main():
                 ),
             )
 
-            if response:
-                candidates = response.result.get("candidates", [])
-                if candidates:
-                    content_parts = candidates[0].get("content", {}).get("parts", [])
-                    if content_parts:
-                        # Get the text from the first part
-                        text = content_parts[0].get("text", "")
-                        return text
+            if hasattr(response, 'text'):
+                content = response.text
+            else:
+                content = "No content found"  # Fallback message
             
-            return "No content found"
-        
+            return content
+
             # client = InferenceClient()
             # messages = [
             #     {
