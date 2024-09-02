@@ -83,7 +83,7 @@ def main():
 
                 st.title("Introducing WiseWhisper🤖!!")
 
-                st.subheader(':yellow[Your interactive gateway to Indian law. Explore legal rights, regulations, and responsibilities effortlessly. Unlock a world of Indian legal knowledge with ease and confidence. Ask, explore, and discover today. ]')
+                st.subheader('Your interactive gateway to Indian law. Explore legal rights, regulations, and responsibilities effortlessly. Unlock a world of Indian legal knowledge with ease and confidence. Ask, explore, and discover today.')
                 st.write(":red[Select a page from the sidebar to get started.]")
                 st.divider()
                 
@@ -171,7 +171,7 @@ def main():
             genai.configure(api_key=st.secrets["GENAI_KEY"])
             model = genai.GenerativeModel(
                 "models/gemini-1.5-flash",
-                system_instruction="You are an Indian Lawyer. You help people with Indian law queries. You don't answer any other questions that are not related to Indian queries.",
+                system_instruction="You are an Indian Lawyer. You help people with Indian law queries. You don't answer any other questions that are not related to Indian queries, You're answer must be short and accurate",
             )
             
             response = model.generate_content(
@@ -179,7 +179,7 @@ def main():
                 generation_config=genai.types.GenerationConfig(
                     candidate_count=1,
                     stop_sequences=["x"],
-                    max_output_tokens=200,
+                    max_output_tokens=500,
                     temperature=1.0,
                 ),
             )
