@@ -184,7 +184,7 @@ def main():
                 ),
             )
 
-            if response.done and response.result:
+            if response:
                 candidates = response.result.get("candidates", [])
                 if candidates:
                     content_parts = candidates[0].get("content", {}).get("parts", [])
