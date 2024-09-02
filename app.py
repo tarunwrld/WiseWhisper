@@ -186,10 +186,10 @@ def main():
             )
 
            if hasattr(response, 'text'):
-            for chunk in response:
-                if hasattr(chunk, 'text'):
-                    return chunk.text
-                return "No valid chunk found"
+               for chunk in response:
+                   if hasattr(chunk, 'text'):
+                       return chunk.text
+                    return "No valid chunk found"
             else:
                 return "No content found"
 
