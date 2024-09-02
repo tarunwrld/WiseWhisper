@@ -184,7 +184,16 @@ def main():
                 ),
             )
 
-            return response
+            if response.done and response.result:
+                candidates = response.result.get("candidates", [])
+                if candidates:
+                    content_parts = candidates[0].get("content", {}).get("parts", [])
+                    if content_parts:
+                        # Get the text from the first part
+                        text = content_parts[0].get("text", "")
+                        return text
+            
+            return "No content found"
         
             # client = InferenceClient()
             # messages = [
