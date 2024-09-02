@@ -188,7 +188,6 @@ def main():
                for chunk in response:
                    if hasattr(chunk, 'text'):
                        return chunk.text
-                    return "No valid chunk found"
             else:
                 return "No content found"
 
