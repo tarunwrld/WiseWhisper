@@ -1,6 +1,6 @@
 from st_on_hover_tabs import on_hover_tabs
 import streamlit as st
-from huggingface_hub import InferenceClient
+import google.generativeai as genai
 from googletrans import Translator
 import time
 # import pyttsx3
@@ -168,38 +168,56 @@ def main():
         #     engine.runAndWait()
 
         def model(question):
-            client = InferenceClient()
-            messages = [
-                {
-                    "role": "user",
-                    "content": question,
-                },
-                {
-                    "role": "assistant",
-                    "content": """
-                        Act like you are a Legal Indian Lawyer. 
-                        As a legal Indian lawyer, your primary focus is to provide legal advice and solutions to your clients queries related to Indian law. 
-                        You don't know anything except Indian law. 
-                        If a question is not related to Indian law, You will politely decline to provide an answer.
-                        You will not provide answer that hurts someone belief,
-                        Your answer will be genuine and will not cause chaos or disruption,
-                        If a question is related to Mathematics,Physics,Chemistry,English,Biology,Coding,Arts,Music,Dance,Technology etc that are not related to Indian Law then You will politely decline to provide an answer.
-                        """ 
-                },
-            ]
-            response = client.chat_completion(
-                messages=messages,
-                tool_choice="auto",
-                temperature=1e-2,
-                max_tokens=350,
-                top_p=0.95,
-                seed=42,
-            )
+            genai.configure(api_key=GENAI_KEY)
+            model = genai.GenerativeModel(
+                  "models/gemini-1.5-flash",
+                  system_instruction="You are an Indian Lawyer. You help people with indian law queries you dont answer any other questions that are not related to indian queries",
+              )
+              a = input("Enter ")
+              
+              response = model.generate_content(
+              a,
+              generation_config=genai.types.GenerationConfig(
+                  candidate_count=1,
+                  stop_sequences=["x"],
+                  max_output_tokens=200,
+                  temperature=1.0,
+                  ),
+              )
+             return response
+        
+            # client = InferenceClient()
+            # messages = [
+            #     {
+            #         "role": "user",
+            #         "content": question,
+            #     },
+            #     {
+            #         "role": "assistant",
+            #         "content": """
+            #             Act like you are a Legal Indian Lawyer. 
+            #             As a legal Indian lawyer, your primary focus is to provide legal advice and solutions to your clients queries related to Indian law. 
+            #             You don't know anything except Indian law. 
+            #             If a question is not related to Indian law, You will politely decline to provide an answer.
+            #             You will not provide answer that hurts someone belief,
+            #             Your answer will be genuine and will not cause chaos or disruption,
+            #             If a question is related to Mathematics,Physics,Chemistry,English,Biology,Coding,Arts,Music,Dance,Technology etc that are not related to Indian Law then You will politely decline to provide an answer.
+            #             """ 
+            #     },
+            # ]
+            # response = client.chat_completion(
+            #     messages=messages,
+            #     tool_choice="auto",
+            #     temperature=1e-2,
+            #     max_tokens=350,
+            #     top_p=0.95,
+            #     seed=42,
+            # )
             
-            # Extracting the response content
-            assistant_response = response.choices[0].message.content
+            # # Extracting the response content
+            # assistant_response = response.choices[0].message.content
             
-            return assistant_response
+            # return assistant_response
             
         def greet():
             for word in greet_text():
