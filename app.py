@@ -168,13 +168,12 @@ def main():
         #     engine.runAndWait()
 
         def model(question):
-            genai.configure(api_key=GENAI_KEY)
+            genai.configure(api_key=st.secrets["GENAI_KEY"])
             model = genai.GenerativeModel(
                   "models/gemini-1.5-flash",
                   system_instruction="You are an Indian Lawyer. You help people with indian law queries you dont answer any other questions that are not related to indian queries",
               )
-              
-              response = model.generate_content(
+            response = model.generate_content(
               question,
               generation_config=genai.types.GenerationConfig(
                   candidate_count=1,
@@ -183,7 +182,7 @@ def main():
                   temperature=1.0,
                   ),
               )
-             return response
+            return response
         
             # client = InferenceClient()
             # messages = [
