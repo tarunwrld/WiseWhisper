@@ -176,7 +176,6 @@ def main():
             
             response = model.generate_content(
                 question,
-                stream=True,
                 generation_config=genai.types.GenerationConfig(
                     candidate_count=1,
                     stop_sequences=["x"],
@@ -185,12 +184,11 @@ def main():
                 ),
             )
             if hasattr(response, 'text'):
-               for chunk in response:
-                   if hasattr(chunk, 'text'):
-                       return chunk.text
+                content = response.text
             else:
-                return "No content found"
-
+                content = "No content found"  # Fallback message
+            
+            return content
             # client = InferenceClient()
             # messages = [
             #     {
