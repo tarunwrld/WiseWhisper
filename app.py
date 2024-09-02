@@ -170,19 +170,21 @@ def main():
         def model(question):
             genai.configure(api_key=st.secrets["GENAI_KEY"])
             model = genai.GenerativeModel(
-                  "models/gemini-1.5-flash",
-                  system_instruction="You are an Indian Lawyer. You help people with indian law queries you dont answer any other questions that are not related to indian queries",
-              )
+                "models/gemini-1.5-flash",
+                system_instruction="You are an Indian Lawyer. You help people with Indian law queries. You don't answer any other questions that are not related to Indian queries.",
+            )
+            
             response = model.generate_content(
-              question,
-              generation_config=genai.types.GenerationConfig(
-                  candidate_count=1,
-                  stop_sequences=["x"],
-                  max_output_tokens=200,
-                  temperature=1.0,
-                  ),
-              )
-            return response.txt
+                question,
+                generation_config=genai.types.GenerationConfig(
+                    candidate_count=1,
+                    stop_sequences=["x"],
+                    max_output_tokens=200,
+                    temperature=1.0,
+                ),
+            )
+
+            return response['text']
         
             # client = InferenceClient()
             # messages = [
