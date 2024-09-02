@@ -171,7 +171,7 @@ def main():
             genai.configure(api_key=st.secrets["GENAI_KEY"])
             model = genai.GenerativeModel(
                 "models/gemini-1.5-flash",
-                system_instruction="You are an Indian Lawyer. You help people with Indian law queries. You don't answer any other questions that are not related to Indian queries, You're answer must be short and accurate",
+                system_instruction="You are an Indian Lawyer. You help people with Indian law queries. You don't answer any other questions that are not related to Indian queries.",
             )
             
             response = model.generate_content(
