@@ -182,7 +182,7 @@ def main():
                   temperature=1.0,
                   ),
               )
-            return response
+            return response.txt
         
             # client = InferenceClient()
             # messages = [
