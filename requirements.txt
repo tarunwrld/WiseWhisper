@@ -1,4 +1,4 @@
-huggingface-hub
+google-generativeai
 streamlit
 text-generation
 pyttsx3
