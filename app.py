@@ -184,8 +184,7 @@ def main():
                     stream=True
                 ),
             )
-
-           if hasattr(response, 'text'):
+            if hasattr(response, 'text'):
                for chunk in response:
                    if hasattr(chunk, 'text'):
                        return chunk.text
