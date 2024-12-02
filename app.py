@@ -170,17 +170,23 @@ def main():
         def model(question):
             genai.configure(api_key=st.secrets["GENAI_KEY"])
             model = genai.GenerativeModel(
-                "models/gemini-1.5-flash",
+                # "models/gemini-1.5-flash",
+                model_name="gemini-1.5-flash",
                 system_instruction="You are an Indian Lawyer. You help people with Indian law queries. You don't answer any other questions that are not related to Indian queries.",
             )
             
             response = model.generate_content(
                 question,
                 generation_config=genai.types.GenerationConfig(
-                    candidate_count=1,
-                    stop_sequences=["x"],
-                    max_output_tokens=500,
-                    temperature=1.0,
+                    # candidate_count=1,
+                    # stop_sequences=["x"],
+                    # max_output_tokens=500,
+                    # temperature=1.0,
+                    "temperature": 1,
+                    "top_p": 0.95,
+                    "top_k": 64,
+                    "max_output_tokens": 8192,
+                    "response_mime_type": "text/plain",
                 ),
             )
             if hasattr(response, 'text'):
