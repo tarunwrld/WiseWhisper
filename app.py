@@ -168,27 +168,45 @@ def main():
         #     engine.runAndWait()
 
         def model(question):
-            genai.configure(api_key=st.secrets["GENAI_KEY"])
+            # genai.configure(api_key=st.secrets["GENAI_KEY"])
+            # model = genai.GenerativeModel(
+            #     "models/gemini-1.5-flash",
+            #     system_instruction="You are an Indian Lawyer. You help people with Indian law queries. You don't answer any other questions that are not related to Indian queries.",
+            # )
+            
+            # response = model.generate_content(
+            #     question,
+            #     generation_config=genai.types.GenerationConfig(
+            #         candidate_count=1,
+            #         stop_sequences=["x"],
+            #         max_output_tokens=500,
+            #         temperature=1.0,
+            #     ),
+            # )
+            genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+
+            generation_config = {
+              "temperature": 1,
+              "top_p": 0.95,
+              "top_k": 64,
+              "max_output_tokens": 8192,
+              "response_mime_type": "text/plain",
+            }
+            
             model = genai.GenerativeModel(
-                # "models/gemini-1.5-flash",
                 model_name="gemini-1.5-flash",
+                generation_config=generation_config,
                 system_instruction="You are an Indian Lawyer. You help people with Indian law queries. You don't answer any other questions that are not related to Indian queries.",
+ 
             )
             
-            response = model.generate_content(
-                question,
-                generation_config=genai.types.GenerationConfig(
-                    # candidate_count=1,
-                    # stop_sequences=["x"],
-                    # max_output_tokens=500,
-                    # temperature=1.0,
-                    "temperature": 1,
-                    "top_p": 0.95,
-                    "top_k": 64,
-                    "max_output_tokens": 8192,
-                    "response_mime_type": "text/plain",
-                ),
+            chat_session = model.start_chat(
+              history=[
+              ]
             )
+        
+            response = chat_session.send_message(question)
+            
             if hasattr(response, 'text'):
                 content = response.text
             else:
