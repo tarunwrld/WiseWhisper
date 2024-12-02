@@ -183,7 +183,7 @@ def main():
             #         temperature=1.0,
             #     ),
             # )
-            genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+            genai.configure(api_key=os.environ["GENAI_KEY"])
 
             generation_config = {
               "temperature": 1,
